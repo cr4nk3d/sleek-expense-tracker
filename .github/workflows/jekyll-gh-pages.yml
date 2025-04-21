@@ -1,3 +1,4 @@
+
 name: Deploy Vite React to GitHub Pages
 
 on:
@@ -34,7 +35,7 @@ jobs:
           node-version: 20
       
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       
       - name: Build
         run: npm run build
@@ -45,7 +46,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist  # Vite builds to dist folder, not _site
+          path: ./dist  # Vite builds to dist folder
 
   # Deployment job
   deploy:
