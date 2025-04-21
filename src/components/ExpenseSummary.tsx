@@ -1,9 +1,9 @@
-
 import { useEffect, useState } from "react";
 import { endOfMonth, format, isSameMonth, isWithinInterval, startOfMonth } from "date-fns";
 import { Expense, DateRange } from "@/types/expense";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { IndianRupee } from "lucide-react";
 
 interface ExpenseSummaryProps {
   expenses: Expense[];
@@ -15,7 +15,6 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
   const [totalAmount, setTotalAmount] = useState(0);
   const [categoryTotals, setCategoryTotals] = useState<Record<string, number>>({});
   
-  // Filter expenses by date range
   useEffect(() => {
     let filtered: Expense[];
     
@@ -36,7 +35,6 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
         });
       });
     } else {
-      // Default to current month if no date range is selected
       const today = new Date();
       filtered = expenses.filter((expense) => {
         return isSameMonth(new Date(expense.date), today);
@@ -45,11 +43,9 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
     
     setFilteredExpenses(filtered);
     
-    // Calculate total amount
     const total = filtered.reduce((sum, expense) => sum + expense.amount, 0);
     setTotalAmount(total);
     
-    // Calculate category totals
     const catTotals = filtered.reduce((acc, expense) => {
       const { category, amount } = expense;
       
@@ -64,7 +60,6 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
     setCategoryTotals(catTotals);
   }, [expenses, dateRange]);
 
-  // Get date range display text
   const getDateRangeText = () => {
     if (dateRange.from && dateRange.to) {
       return `${format(dateRange.from, "MMM d")} - ${format(dateRange.to, "MMM d, yyyy")}`;
@@ -76,9 +71,7 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
     }
   };
 
-  // Format category breakdown for display
   const getCategoryBreakdown = () => {
-    // Sort categories by amount (highest first)
     return Object.entries(categoryTotals)
       .sort((a, b) => b[1] - a[1])
       .map(([category, amount]) => ({
@@ -98,7 +91,10 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
       </CardHeader>
       <CardContent>
         <div className="text-center mb-6">
-          <span className="block text-4xl font-bold">${totalAmount.toFixed(2)}</span>
+          <span className="block text-4xl font-bold flex items-center justify-center gap-2">
+            <IndianRupee size={32} className="text-gray-400" />
+            {totalAmount.toFixed(2)}
+          </span>
           <span className="text-sm text-gray-400">
             {filteredExpenses.length} expense{filteredExpenses.length !== 1 ? "s" : ""}
           </span>
@@ -113,7 +109,10 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
             <div key={category} className="space-y-1">
               <div className="flex justify-between text-sm">
                 <span>{category}</span>
-                <span>${amount.toFixed(2)}</span>
+                <span className="flex items-center gap-1">
+                  <IndianRupee size={12} className="text-gray-400" />
+                  {amount.toFixed(2)}
+                </span>
               </div>
               <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
                 <div 

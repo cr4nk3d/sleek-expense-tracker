@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Expense } from "@/types/expense";
 import { v4 as uuidv4 } from "uuid";
-import { Plus } from "lucide-react";
+import { Plus, IndianRupee } from "lucide-react";
 
 const expenseCategories = [
   "Food",
@@ -58,7 +57,9 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             Amount
           </label>
           <div className="relative">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+              <IndianRupee size={16} />
+            </span>
             <Input
               id="amount"
               type="number"

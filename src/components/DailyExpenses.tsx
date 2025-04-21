@@ -1,8 +1,8 @@
-
 import { useEffect, useState } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import { Expense } from "@/types/expense";
 import { Separator } from "@/components/ui/separator";
+import { IndianRupee } from "lucide-react";
 
 interface DailyExpensesProps {
   expenses: Expense[];
@@ -11,7 +11,6 @@ interface DailyExpensesProps {
 export function DailyExpenses({ expenses }: DailyExpensesProps) {
   const [dailyExpenses, setDailyExpenses] = useState<Record<string, Expense[]>>({});
   
-  // Group expenses by day
   useEffect(() => {
     const groupedByDay = expenses.reduce((acc, expense) => {
       const dateKey = format(new Date(expense.date), "yyyy-MM-dd");
@@ -27,12 +26,10 @@ export function DailyExpenses({ expenses }: DailyExpensesProps) {
     setDailyExpenses(groupedByDay);
   }, [expenses]);
 
-  // Get the date keys sorted by most recent first
   const sortedDates = Object.keys(dailyExpenses).sort((a, b) => {
     return new Date(b).getTime() - new Date(a).getTime();
   });
   
-  // Format date label
   const formatDateLabel = (dateStr: string) => {
     const date = new Date(dateStr);
     
@@ -45,7 +42,6 @@ export function DailyExpenses({ expenses }: DailyExpensesProps) {
     }
   };
 
-  // Calculate total for a day
   const calculateDailyTotal = (expenses: Expense[]) => {
     return expenses.reduce((sum, exp) => sum + exp.amount, 0).toFixed(2);
   };
@@ -69,8 +65,9 @@ export function DailyExpenses({ expenses }: DailyExpensesProps) {
               <h3 className="text-lg font-medium">{formatDateLabel(dateKey)}</h3>
               <div className="flex flex-col items-end">
                 <span className="text-sm text-gray-400">{dayExpenses.length} items</span>
-                <span className="text-lg font-semibold text-white">
-                  ${calculateDailyTotal(dayExpenses)}
+                <span className="text-lg font-semibold text-white flex items-center gap-1">
+                  <IndianRupee size={16} className="text-gray-400" />
+                  {calculateDailyTotal(dayExpenses)}
                 </span>
               </div>
             </div>
@@ -91,7 +88,10 @@ export function DailyExpenses({ expenses }: DailyExpensesProps) {
                         </span>
                       </div>
                     </div>
-                    <span className="font-semibold">${expense.amount.toFixed(2)}</span>
+                    <span className="font-semibold flex items-center gap-1">
+                      <IndianRupee size={14} className="text-gray-400" />
+                      {expense.amount.toFixed(2)}
+                    </span>
                   </div>
                 </div>
               ))}
