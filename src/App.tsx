@@ -41,7 +41,7 @@ function App() {
           <p className="text-gray-400">Track your daily expenses with style</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
           <div className="md:col-span-2 w-full">
             <ExpenseForm onAddExpense={handleAddExpense} />
             <DailyExpenses expenses={expenses} />
