@@ -7,12 +7,6 @@ export interface Expense {
   date: Date;
 }
 
-export type ExpenseSummary = {
-  total: number;
-  count: number;
-  date: string;
-}
-
 export type DateRange = {
   from: Date | undefined;
   to: Date | undefined;

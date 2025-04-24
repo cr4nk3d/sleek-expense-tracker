@@ -1,7 +1,7 @@
+
 import { useEffect, useState } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import { Expense } from "@/types/expense";
-import { Separator } from "@/components/ui/separator";
 import { IndianRupee } from "lucide-react";
 
 interface DailyExpensesProps {
@@ -75,12 +75,12 @@ export function DailyExpenses({ expenses }: DailyExpensesProps) {
             <div>
               {dayExpenses.map((expense, idx) => (
                 <div key={expense.id}>
-                  {idx > 0 && <Separator className="bg-gray-800" />}
+                  {idx > 0 && <div className="h-px bg-gray-800" />}
                   <div className="flex items-center justify-between p-4">
                     <div className="flex flex-col">
                       <span className="font-medium">{expense.description}</span>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs px-2 py-0.5 bg-muted rounded-full text-gray-300">
+                        <span className="text-xs px-2 py-0.5 bg-black/30 rounded-full text-gray-300">
                           {expense.category}
                         </span>
                         <span className="text-xs text-gray-400">

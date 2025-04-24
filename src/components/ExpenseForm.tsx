@@ -1,10 +1,8 @@
+
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Expense } from "@/types/expense";
 import { v4 as uuidv4 } from "uuid";
 import { Plus, IndianRupee } from "lucide-react";
+import { Expense } from "@/types/expense";
 
 const expenseCategories = [
   "Food",
@@ -60,13 +58,13 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
               <IndianRupee size={16} />
             </span>
-            <Input
+            <input
               id="amount"
               type="number"
               step="0.01"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              className="pl-8 bg-black/50 border-gray-800"
+              className="w-full pl-8 py-2 bg-black/50 border border-gray-800 rounded-md text-white"
               placeholder="0.00"
               required
             />
@@ -77,42 +75,41 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
           <label htmlFor="category" className="text-sm text-gray-300">
             Category
           </label>
-          <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="bg-black/50 border-gray-800">
-              <SelectValue placeholder="Category" />
-            </SelectTrigger>
-            <SelectContent className="bg-uber-charcoal border-gray-800">
-              {expenseCategories.map((cat) => (
-                <SelectItem key={cat} value={cat}>
-                  {cat}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full p-2 bg-black/50 border border-gray-800 rounded-md text-white"
+          >
+            {expenseCategories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
         
         <div className="space-y-2">
           <label htmlFor="description" className="text-sm text-gray-300">
             Description
           </label>
-          <Input
+          <input
             id="description"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="bg-black/50 border-gray-800"
+            className="w-full p-2 bg-black/50 border border-gray-800 rounded-md text-white"
             placeholder="What was this expense for?"
           />
         </div>
       </div>
       
-      <Button 
+      <button 
         type="submit" 
-        className="w-full bg-primary hover:bg-primary/90 flex gap-2 items-center"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2"
       >
         <Plus size={16} />
         <span>Add Expense</span>
-      </Button>
+      </button>
     </form>
   );
 }
