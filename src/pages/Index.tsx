@@ -44,6 +44,15 @@ const Index = () => {
     });
   };
 
+  // Delete an expense
+  const handleDeleteExpense = (expenseId: string) => {
+    setExpenses(prev => prev.filter(expense => expense.id !== expenseId));
+    toast({
+      title: "Expense deleted",
+      description: "The expense has been removed successfully",
+    });
+  };
+
   // Handle date range filter change
   const handleDateRangeChange = (range: DateRange) => {
     setDateRange(range);
@@ -72,7 +81,10 @@ const Index = () => {
               onResetFilter={handleResetFilter}
             />
             
-            <DailyExpenses expenses={expenses} />
+            <DailyExpenses 
+              expenses={expenses} 
+              onDeleteExpense={handleDeleteExpense}
+            />
           </div>
           
           <div className="w-full">
