@@ -105,7 +105,7 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
       
       <button 
         type="submit" 
-        className="w-3/4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2"
+        className="w-3/4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2 mx-auto"
       >
         <Plus size={16} />
         <span>Add Expense</span>
