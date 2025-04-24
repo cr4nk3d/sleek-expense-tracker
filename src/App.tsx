@@ -33,6 +33,10 @@ function App() {
     setExpenses(prev => [newExpense, ...prev]);
   };
 
+  const handleDeleteExpense = (expenseId: string) => {
+    setExpenses(prev => prev.filter(expense => expense.id !== expenseId));
+  };
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto py-8 px-4 max-w-5xl">
@@ -44,7 +48,7 @@ function App() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
           <div className="md:col-span-2 w-full">
             <ExpenseForm onAddExpense={handleAddExpense} />
-            <DailyExpenses expenses={expenses} />
+            <DailyExpenses expenses={expenses} onDeleteExpense={handleDeleteExpense} />
           </div>
         </div>
       </div>
