@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import { Expense } from "@/types/expense";
@@ -9,7 +10,6 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -107,7 +107,12 @@ export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps)
                       </span>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-red-500/10 hover:text-red-400">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8 hover:bg-red-500/10 hover:text-red-400"
+                            onClick={() => console.log('Delete button clicked for expense:', expense.id)}
+                          >
                             <Trash2 className="h-4 w-4" />
                           </Button>
                         </AlertDialogTrigger>
@@ -118,15 +123,18 @@ export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps)
                               Are you sure you want to delete this expense? This action cannot be undone.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
-                          <AlertDialogFooter>
+                          <div className="flex justify-end gap-4">
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
                             <AlertDialogAction 
-                              onClick={() => onDeleteExpense(expense.id)}
+                              onClick={() => {
+                                console.log('Confirming delete for expense:', expense.id);
+                                onDeleteExpense(expense.id);
+                              }}
                               className="bg-red-500 hover:bg-red-600"
                             >
                               Delete
                             </AlertDialogAction>
-                          </AlertDialogFooter>
+                          </div>
                         </AlertDialogContent>
                       </AlertDialog>
                     </div>
@@ -140,3 +148,4 @@ export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps)
     </div>
   );
 }
+
