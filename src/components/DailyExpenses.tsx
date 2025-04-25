@@ -2,25 +2,13 @@
 import { useEffect, useState } from "react";
 import { format, isToday, isYesterday } from "date-fns";
 import { Expense } from "@/types/expense";
-import { IndianRupee, Trash2 } from "lucide-react";
-import { Button } from "./ui/button";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { IndianRupee } from "lucide-react";
 
 interface DailyExpensesProps {
   expenses: Expense[];
-  onDeleteExpense: (id: string) => void;
 }
 
-export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps) {
+export function DailyExpenses({ expenses }: DailyExpensesProps) {
   const [dailyExpenses, setDailyExpenses] = useState<Record<string, Expense[]>>({});
   
   useEffect(() => {
@@ -100,44 +88,10 @@ export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps)
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-4">
-                      <span className="font-semibold flex items-center gap-1">
-                        <IndianRupee size={14} className="text-gray-400" />
-                        {expense.amount.toFixed(2)}
-                      </span>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button 
-                            variant="ghost" 
-                            size="icon" 
-                            className="h-8 w-8 hover:bg-red-500/10 hover:text-red-400"
-                            onClick={() => console.log('Delete button clicked for expense:', expense.id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Delete Expense</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Are you sure you want to delete this expense? This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <div className="flex justify-end gap-4">
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction 
-                              onClick={() => {
-                                console.log('Confirming delete for expense:', expense.id);
-                                onDeleteExpense(expense.id);
-                              }}
-                              className="bg-red-500 hover:bg-red-600"
-                            >
-                              Delete
-                            </AlertDialogAction>
-                          </div>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </div>
+                    <span className="font-semibold flex items-center gap-1">
+                      <IndianRupee size={14} className="text-gray-400" />
+                      {expense.amount.toFixed(2)}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -148,4 +102,3 @@ export function DailyExpenses({ expenses, onDeleteExpense }: DailyExpensesProps)
     </div>
   );
 }
-
