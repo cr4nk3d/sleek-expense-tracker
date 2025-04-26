@@ -43,10 +43,13 @@ function App() {
     setExpenses((prev) => [newExpense, ...prev]);
   };
 
-  const handleDateRangeChange = (dates: [Date, Date]) => {
-    const [start, end] = dates;
-    setDateRange({ from: start, to: end });
-  };
+const handleDateRangeChange = (dates: [Date, Date]) => {
+  const [start, end] = dates;
+  setDateRange({ 
+    from: start ? startOfDay(start) : null, 
+    to: end ? endOfDay(end) : null 
+  });
+};
 
   return (
     <div className="min-h-screen bg-black text-white">
