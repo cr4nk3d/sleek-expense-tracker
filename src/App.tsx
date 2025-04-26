@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
 import { useState, useEffect } from "react";
 import { Expense } from "./types/expense";
 import { ExpenseForm } from "./components/ExpenseForm";
 import { DailyExpenses } from "./components/DailyExpenses";
-<<<<<<< HEAD
 import { ExpenseSummary } from "./components/ExpenseSummary";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,11 +16,6 @@ function App() {
     from: startOfDay(new Date()), // Default to today
     to: endOfDay(new Date()), // Default to today
   });
-=======
-
-function App() {
-  const [expenses, setExpenses] = useState<Expense[]>([]);
->>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
 
   // Load expenses from localStorage on mount
   useEffect(() => {
@@ -35,11 +25,7 @@ function App() {
         const parsed = JSON.parse(savedExpenses);
         const formattedExpenses = parsed.map((exp: any) => ({
           ...exp,
-<<<<<<< HEAD
           date: new Date(exp.date),
-=======
-          date: new Date(exp.date)
->>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         }));
         setExpenses(formattedExpenses);
       } catch (error) {
@@ -54,15 +40,12 @@ function App() {
   }, [expenses]);
 
   const handleAddExpense = (newExpense: Expense) => {
-<<<<<<< HEAD
     setExpenses((prev) => [newExpense, ...prev]);
   };
 
   const handleDateRangeChange = (dates: [Date, Date]) => {
-    setDateRange({ from: dates[0], to: dates[1] });
-=======
-    setExpenses(prev => [newExpense, ...prev]);
->>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
+    const [start, end] = dates;
+    setDateRange({ from: start, to: end });
   };
 
   return (
@@ -73,37 +56,27 @@ function App() {
           <p className="text-gray-400">Track your daily expenses with style</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
-<<<<<<< HEAD
-          <div className="md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 space-y-4">
             <ExpenseForm onAddExpense={handleAddExpense} />
             <DailyExpenses expenses={expenses} />
           </div>
-          {/* Date Range Selector */}
-          <div className="mb-5 mx-auto">
-            <h2 className="text-xl font-medium text-white mb-2">
-              Select Date Range
-            </h2>
-            <DatePicker
-              selected={dateRange.from}
-              onChange={handleDateRangeChange}
-              startDate={dateRange.from}
-              endDate={dateRange.to}
-              selectsRange
-              inline
-              dateFormat="MMMM d, yyyy"
-            />
-          </div>
-          <div className="md:col-span-1">
-            {/* Expense Summary with dynamic date range */}
+
+          <div>
+            <div className="mb-6">
+              <h2 className="text-xl font-medium mb-2">Select Date Range</h2>
+              <DatePicker
+                selected={dateRange.from}
+                onChange={handleDateRangeChange}
+                startDate={dateRange.from}
+                endDate={dateRange.to}
+                selectsRange
+                inline
+                dateFormat="MMMM d, yyyy"
+              />
+            </div>
             <ExpenseSummary expenses={expenses} dateRange={dateRange} />
           </div>
-=======
-          <div className="md:col-span-2 w-full">
-            <ExpenseForm onAddExpense={handleAddExpense} />
-            <DailyExpenses expenses={expenses} />
-          </div>
->>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         </div>
       </div>
     </div>

@@ -128,7 +128,7 @@ export function ExpenseSummary({ expenses, dateRange }: ExpenseSummaryProps) {
               </div>
               <div className="w-full bg-gray-800 rounded-full h-1.5 overflow-hidden">
                 <div
-                  className="bg-primary h-1.5 rounded-full"
+                  className="bg-blue-500 h-1.5 rounded-full"
                   style={{ width: `${percentage}%` }}
                 />
               </div>
