@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { Plus, IndianRupee } from "lucide-react";
@@ -25,9 +29,15 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+<<<<<<< HEAD
 
     if (!amount || parseFloat(amount) <= 0) return;
 
+=======
+    
+    if (!amount || parseFloat(amount) <= 0) return;
+    
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
     const newExpense: Expense = {
       id: uuidv4(),
       amount: parseFloat(amount),
@@ -35,9 +45,15 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
       category,
       date: new Date(),
     };
+<<<<<<< HEAD
 
     onAddExpense(newExpense);
 
+=======
+    
+    onAddExpense(newExpense);
+    
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
     // Reset form
     setAmount("");
     setDescription("");
@@ -45,12 +61,18 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
   };
 
   return (
+<<<<<<< HEAD
     <form
       onSubmit={handleSubmit}
       className="space-y-4 p-4 mb-6 glass rounded-xl"
     >
       <h2 className="text-lg font-medium text-white">Add New Expense</h2>
 
+=======
+    <form onSubmit={handleSubmit} className="space-y-4 p-4 mb-6 glass rounded-xl">
+      <h2 className="text-lg font-medium text-white">Add New Expense</h2>
+      
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="space-y-2">
           <label htmlFor="amount" className="text-sm text-gray-300">
@@ -72,7 +94,11 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             />
           </div>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         <div className="space-y-2">
           <label htmlFor="category" className="text-sm text-gray-300">
             Category
@@ -89,7 +115,11 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             ))}
           </select>
         </div>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         <div className="space-y-2">
           <label htmlFor="description" className="text-sm text-gray-300">
             Description
@@ -104,9 +134,15 @@ export function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
           />
         </div>
       </div>
+<<<<<<< HEAD
 
       <button
         type="submit"
+=======
+      
+      <button 
+        type="submit" 
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         className="w-3/4 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md flex items-center justify-center gap-2 mx-auto"
       >
         <Plus size={16} />

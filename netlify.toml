@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 [build]
   command = "npm run build"
@@ -6,4 +7,14 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
+=======
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
   status = 200

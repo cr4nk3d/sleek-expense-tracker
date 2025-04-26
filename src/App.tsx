@@ -1,7 +1,12 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
 import { useState, useEffect } from "react";
 import { Expense } from "./types/expense";
 import { ExpenseForm } from "./components/ExpenseForm";
 import { DailyExpenses } from "./components/DailyExpenses";
+<<<<<<< HEAD
 import { ExpenseSummary } from "./components/ExpenseSummary";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,6 +21,11 @@ function App() {
     from: startOfDay(new Date()), // Default to today
     to: endOfDay(new Date()), // Default to today
   });
+=======
+
+function App() {
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
 
   // Load expenses from localStorage on mount
   useEffect(() => {
@@ -25,7 +35,11 @@ function App() {
         const parsed = JSON.parse(savedExpenses);
         const formattedExpenses = parsed.map((exp: any) => ({
           ...exp,
+<<<<<<< HEAD
           date: new Date(exp.date),
+=======
+          date: new Date(exp.date)
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         }));
         setExpenses(formattedExpenses);
       } catch (error) {
@@ -40,11 +54,15 @@ function App() {
   }, [expenses]);
 
   const handleAddExpense = (newExpense: Expense) => {
+<<<<<<< HEAD
     setExpenses((prev) => [newExpense, ...prev]);
   };
 
   const handleDateRangeChange = (dates: [Date, Date]) => {
     setDateRange({ from: dates[0], to: dates[1] });
+=======
+    setExpenses(prev => [newExpense, ...prev]);
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
   };
 
   return (
@@ -56,6 +74,7 @@ function App() {
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
+<<<<<<< HEAD
           <div className="md:col-span-2">
             <ExpenseForm onAddExpense={handleAddExpense} />
             <DailyExpenses expenses={expenses} />
@@ -79,6 +98,12 @@ function App() {
             {/* Expense Summary with dynamic date range */}
             <ExpenseSummary expenses={expenses} dateRange={dateRange} />
           </div>
+=======
+          <div className="md:col-span-2 w-full">
+            <ExpenseForm onAddExpense={handleAddExpense} />
+            <DailyExpenses expenses={expenses} />
+          </div>
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
         </div>
       </div>
     </div>

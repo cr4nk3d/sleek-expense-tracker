@@ -62,8 +62,13 @@ const Index = () => {
           <p className="text-gray-400">Track your daily expenses with style</p>
         </header>
 
+<<<<<<< HEAD
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
+=======
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto">
+          <div className="md:col-span-2 w-full">
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
             <ExpenseForm onAddExpense={handleAddExpense} />
             
             <DateFilter 
@@ -75,7 +80,11 @@ const Index = () => {
             <DailyExpenses expenses={expenses} />
           </div>
           
+<<<<<<< HEAD
           <div>
+=======
+          <div className="w-full">
+>>>>>>> 6e55239b186e8617ffeb830b0cbea5e6e9e49b2d
             <ExpenseSummary expenses={expenses} dateRange={dateRange} />
           </div>
         </div>
