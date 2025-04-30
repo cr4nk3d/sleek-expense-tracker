@@ -43,13 +43,13 @@ function App() {
     setExpenses((prev) => [newExpense, ...prev]);
   };
 
-const handleDateRangeChange = (dates: [Date, Date]) => {
-  const [start, end] = dates;
-  setDateRange({ 
-    from: start ? startOfDay(start) : null, 
-    to: end ? endOfDay(end) : null 
-  });
-};
+  const handleDateRangeChange = (dates: [Date, Date]) => {
+    const [start, end] = dates;
+    setDateRange({
+      from: start ? startOfDay(start) : null,
+      to: end ? endOfDay(end) : null,
+    });
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -59,15 +59,19 @@ const handleDateRangeChange = (dates: [Date, Date]) => {
           <p className="text-gray-400">Track your daily expenses with style</p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 space-y-4">
+        <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6">
+          {/* Left Side (form + expenses): grouped and ordered */}
+          <div className="order-1 lg:order-1 lg:col-span-2 space-y-4">
             <ExpenseForm onAddExpense={handleAddExpense} />
             <DailyExpenses expenses={expenses} />
           </div>
 
-          <div>
-            <div className="mb-6">
-              <h2 className="text-xl font-medium mb-2">Select Date Range</h2>
+          {/* Right Side (date picker + summary) */}
+          <div className="order-2 lg:order-2">
+            <div className="mb-6 mx-auto w-fit">
+              <h2 className="text-xl font-medium mb-2 text-center">
+                Select Date Range
+              </h2>
               <DatePicker
                 selected={dateRange.from}
                 onChange={handleDateRangeChange}
