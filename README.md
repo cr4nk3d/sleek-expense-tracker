@@ -18,9 +18,8 @@ Built with:
 3. Start adding your expenses!
 
 ## 📝 Usage
-- Enter a description, amount, date, and category  
+- Enter a description, amount and category  
 - Save to see totals update  
-- Filter or remove entries as needed
 
 ## 📄 License
 This project is open-source.
